@@ -1,0 +1,20 @@
+<form n:name="form" class="app-form form-inline">
+    <div class="form-group">
+        <label n:name="geoplace">Kde chcete zaparkovat</label>
+        <div class="inputs-group">
+            <input class="form-control suggest" data-place-input="#{$form['place']->htmlId}" data-lnglat-input="#{$form['lnglat']->htmlId}" data-handle="{plink Api:suggestPlace, q => '--query--'}" n:name="geoplace">
+            <a data-target="#{$form['geoplace']->htmlId}" class="clear-input">X</a>
+        </div>
+    </div>
+
+    <button n:name="search" type="submit" class="btn btn-padded btn-primary">
+        <i class="fa fa-search fa-1x"></i> Najdi místo
+    </button>
+
+    <div>
+        <br/>
+        {foreach $form[types]->items as $key => $label}
+            <label n:name="types:$key"><input n:name="types:$key" class="placeTypeCheckbox" /> {$label}</label>{if !$iterator->last} &nbsp;{/if}
+        {/foreach}
+    </div>
+</form>

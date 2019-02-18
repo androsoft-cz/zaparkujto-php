@@ -1,0 +1,38 @@
+{extends '../@layout.admin.latte'}
+
+{block content}
+
+{var customInputsTemplatePath => '../../Admin/templates/Cards/partial/customFormInputs.latte'} {* !!! path relative to 'Base/components' dir *}
+{var customInputNames => ['place']}
+
+<!-- Main content -->
+<section class="content">
+	<div class="row">
+        <div class="col-md-6">
+            {include '../../../Base/components/BSFormLTE.latte', form => form, formName => 'presenters.cards.cardDetail', controlClass => 'col-md-12', customInputsTemplatePath => $customInputsTemplatePath, customInputNames => $customInputNames}
+        </div>
+
+        <div class="col-md-6">
+            <p n:if="$shareableEnabled">
+                <b>{_presenters.cards.placeOffered}:</b> {if $currentlyShareable}{_presenters.cards.yes}{else}{_presenters.cards.no}{/if}<br />
+
+                {if $manualShareable}
+                    <a n:href="setManualShareable id => $id, manualShareable => 0" class="btn btn-primary">{_admin.offerByTimeWindow}</a>
+
+                    {if $shareable}
+                        <a n:href="setShareable id => $id, shareable => 0" class="btn btn-primary">{_presenters.cards.stopOffering}</a>
+                    {else}
+                        <a n:href="setShareable id => $id, shareable => 1" class="btn btn-primary">{_presenters.cards.offer}</a>
+                    {/if}
+                {else}
+                    <a n:href="setManualShareable id => $id, manualShareable => 1" class="btn btn-primary">{_admin.offerManually}</a>
+                {/if}
+            </p>
+
+            <h3>{_presenters.cards.timeWindows}</h3>
+
+            <p><a n:href="addTimeWindow id => $id" class="btn btn-primary">{_presenters.cards.addTimeWindow}</a></p>
+            {control timeWindowsGrid}
+        </div>
+	</div>
+</section>

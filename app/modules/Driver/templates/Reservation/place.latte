@@ -1,0 +1,74 @@
+{extends '../@layout.driver.latte'}
+
+{block #content}
+
+<h1>
+    {_driver.reservation}
+</h1>
+
+<div class="row">
+    <div class="col-lg-3">
+    </div>
+
+    <div class="col-lg-6">
+        <div class="preview">
+            <img src="{$basePath}/{$place->typeIconUrl}" title="" alt="">
+            <span class="label label-primary">{$place->free_capacity}</span>
+
+            <h2>{$place->identifier}</h2>
+
+            <p class="note">
+                <small> {_presenters.places.onStreet, ['street' => $place->streetName]}</small>
+            </p>
+        </div>
+
+        {if $showReservationForm}
+            {include '../../../Base/components/BSFormLTE.latte', form => reservationForm, formName => '', controlClass => 'col-md-12'}
+        {else}
+            <p>
+                <b>{_common.price}:</b> {_common.forFree}
+            </p>
+        {/if}
+    </div>
+</div>
+
+{/block}
+
+{block scripts}
+    {include parent}
+
+    {if $showReservationForm}
+        <script type="text/javascript">
+            $(function() {
+                ReservationFormHandler = {
+                    parkTimeInput: null,
+                    toInput: null,
+                    priceInput: null,
+                    isForFree: {$place->isForFree},
+
+                    init: function() {
+                        ReservationFormHandler.parkTimeInput = $("[name='parkTime']");
+                        ReservationFormHandler.toInput = $("[name='to']");
+                        ReservationFormHandler.priceInput = $("[name='price']");
+
+                        ReservationFormHandler.parkTimeInput.change(function() {
+                            ReservationFormHandler.refresh();
+                        });
+                    },
+
+                    refresh: function() {
+                        var parkingTime = ReservationFormHandler.parkTimeInput.val();
+                        ReservationFormHandler.toInput.val(parkingTime);
+
+                        if (!ReservationFormHandler.isForFree) {
+                            ReservationFormHandler.priceInput.val(parkingTime);
+                        }
+                    }
+                };
+
+                ReservationFormHandler.init();
+                ReservationFormHandler.refresh();
+            });
+        </script>
+    {/if}
+{/block}

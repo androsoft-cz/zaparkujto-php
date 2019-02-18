@@ -1,0 +1,24 @@
+services:
+    # Base
+    - App\Modules\Base\Forms\Security\IPasswordFormFactory
+    - App\Modules\Base\Forms\Security\ISignInFormFactory
+    - App\Modules\Base\Forms\Security\ISignUpFormFactory
+
+    # Driver
+    - App\Modules\Driver\Forms\Profiles\IProfileFormFactory
+    - App\Modules\Driver\Forms\Order\IReservationFormFactory
+    - App\Modules\Driver\Forms\Extend\IExtendReservationFormFactory
+    - App\Modules\Driver\Forms\PasswordReset\IPasswordResetFormFactory
+
+    # Admin
+    - App\Modules\Admin\Forms\Organizations\IOrganizationFormFactory
+    - App\Modules\Admin\Forms\Organizations\IBankDetailFormFactory
+    - App\Modules\Admin\Forms\Places\IPlaceFormFactory
+    - App\Modules\Admin\Forms\Positions\IPositionFormFactory
+    - App\Modules\Admin\Forms\UseofPlaces\IUseofPlacesFormFactory
+    - App\Modules\Admin\Forms\PlaceCards\IPlaceCardFormFactory
+    - App\Modules\Admin\Forms\Maintenances\IMaintenanceFormFactory
+    - App\Modules\Admin\Forms\Inspections\IInspectionFormFactory
+    - App\Modules\Admin\Forms\Users\IUserFormFactory
+    - App\Modules\Admin\Forms\Cards\ICardFormFactory
+    - App\Modules\Admin\Forms\TimeWindows\ITimeWindowFormFactory

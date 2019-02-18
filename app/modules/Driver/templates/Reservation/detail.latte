@@ -1,0 +1,37 @@
+{extends '../@layout.driver.latte'}
+
+{block #content}
+
+<h1>
+    {_driver.reservationDetail}
+</h1>
+
+<div class="row">
+    <div class="col-lg-3">
+    </div>
+
+    <div class="col-lg-6">
+        <img src="{$basePath}/{$reservation->typeIconUrl}" title="" alt="">
+        <h4>{$reservation->identifier}</h4>
+        {_presenters.places.onStreet, ['street' => $reservation->street_name]} <br />
+        <br />
+        <strong>{_driver.rz}:</strong> {$reservation->rz} <br />
+        <strong>{_driver.parkingFrom}:</strong> {$reservation->from_date} <br />
+        <strong>{_driver.parkingTo}:</strong> {$reservation->to_date} <br />
+        <strong>{_common.price}:</strong> {$reservation->price} <br />
+
+        {ifset $reservation->order_state}
+            <strong>{_common.state}:</strong> {_$reservation->order_state_key}
+            <br />
+            <br />
+
+            {if $reservation->waitingForPayment}
+                <a href="{link :Driver:Reservation:gateway $reservation->reservation_id}" class="btn btn-success btn-flat">{_driver.pay}</a>
+                <a href="{link :Driver:Reservation:cancel $reservation->reservation_id}" class="btn btn-danger btn-flat">{_common.cancel}</a>
+            {else}
+                {*<a href="#" class="btn btn-success btn-flat">Prodloužit</a>*}
+            {/if}
+        {/ifset}
+    </div>
+
+</div>

@@ -1,0 +1,17 @@
+{default customInputsTemplatePath => null}
+{default customInputNames => []}
+
+<div class="box box-primary">
+	<div class="box-header with-border">
+		<h3 class="box-title">{$formName|translate}</h3>
+	</div>
+	<form n:name=$form class="form" role="form">
+		<div class="box-body">
+			{include 'BSPartialFormErrors.latte', form => $form }
+			{include 'BSPartialFormBody.latte', form => $form, class => $controlClass, customInputsTemplatePath => $customInputsTemplatePath, customInputNames => $customInputNames}
+		</div><!-- /.box-body -->
+		<div class="box-footer">
+			{include 'BSPartialFormButtons.latte', form => $form}
+		</div>
+	</form>
+</div>

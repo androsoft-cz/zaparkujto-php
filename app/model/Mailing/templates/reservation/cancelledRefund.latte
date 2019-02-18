@@ -1,0 +1,30 @@
+{layout '../@layout.latte'}
+{block #content}
+
+<h2>{_mail.cancelReservation}</h2>
+
+<p>{_mail.cancelReservationDesc}</p>
+
+{var $place => $reservation->place}
+<table class="table table-striped">
+    <tr>
+        <th>{_mail.street}:</th>
+        <td>(#{$place->identifier}) {$place->description}</td>
+    </tr>
+    <tr>
+        <th>{_mail.city}:</th>
+        <td>{$place->organization->name}</td>
+    </tr>
+    <tr>
+        <th>{_mail.from}:</th>
+        <td>{$reservation->from|date:'d.m.Y H:i'}</td>
+    </tr>
+    <tr>
+        <th>{_mail.to}:</th>
+        <td>{$reservation->to|date:'d.m.Y H:i'}</td>
+    </tr>
+</table>
+
+<p>
+    {_mail.sparePlaceNotFound}
+</p>

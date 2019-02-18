@@ -1,0 +1,13 @@
+{extends '../@layout.admin.latte'}
+
+{block content}
+
+<!-- Main content -->
+<section class="content">
+	<div class="row">
+	<div class="col-md-6">
+	{* {control bsForm $presenter['orgForm'], panel, col-md-12, 'Nová organizace'} *}
+	{include '../../../Base/components/BSFormLTE.latte', form => form, formName => 'presenters.organizations.new', controlClass => 'col-md-12'}
+	</div>
+	</div>
+</section>

@@ -1,0 +1,81 @@
+{extends '../@layout.admin.latte'}
+{block content}
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+    <div class="col-md-6">
+        {include '../../../Base/components/BSFormLTE.latte', form => form, formName => 'presenters.places.detail', controlClass => 'col-md-12'}
+    </div>
+
+    <div class="col-md-6">
+        {snippet image}
+            {ifset $imageUrl}
+                <img src="{$basePath}/{$imageUrl}" alt="{_presenters.places.detailImage}" style="max-width: 300px; max-height: 200px;"/>
+            {/ifset}
+        {/snippet}
+
+        <p id="loadingInfo" style="display: none;">
+            {_presenters.places.uploadImageProgress} <span id="fileName"></span>
+        </p>
+        <a href="#" id="browseButton">{_presenters.places.uploadImage}</a>
+
+        <a id="redrawImage" class="ajax" n:href="updateImage!" style="display: none;"></a>
+
+        <h3>{_admin.positionsCapacityFree, $positionsFreeCount, [free => $positionsFreeCount]}&nbsp;{_admin.positionsCapacityTotal, $place->capacity, [capacity => $place->capacity]}.</h3>
+
+        <p>
+            <a n:href="positionAdd, placeId => $placeId" class="btn btn-primary">{_admin.addPosition}</a>
+        </p>
+
+        {control positionGrid}
+
+        <h3>{_admin.useOfPlace}</h3>
+
+        <p>
+            <a n:href=":Admin:UseofPlaces:add placeId => $placeId" class="btn btn-primary">{_admin.addUseOfPlace}</a>
+        </p>
+
+        {control useofPlacesGrid}
+
+        <h3>{_presenters.places.parkingCards}</h3>
+        {_presenters.places.totalCount}: {$cardCount}<br />
+
+        {control placeCardsGrid}
+
+        {var customInputsTemplatePath => '../../Admin/templates/Places/partial/customFormInputs.latte'} {* !!! path relative to 'Base/components' dir *}
+        {var customInputNames => ['email']}
+
+        {include '../../../Base/components/BSFormLTE.latte', form => placeCardForm, formName => 'presenters.places.assignCard', controlClass => 'col-md-12',
+            customInputsTemplatePath => $customInputsTemplatePath, customInputNames => $customInputNames}
+    </div>
+
+    </div>
+</section>
+{/block}
+
+{block scripts}
+    {include parent}
+    <script type="text/javascript">
+        $(function() {
+            var r = new Resumable({
+                target: {link proceedChunk $placeId},
+                fileType: {$allowedExtensions}
+            });
+
+            r.assignBrowse(document.getElementById('browseButton'));
+
+            r.on('fileAdded', function (file, event) {
+                r.upload();
+                $('#fileName').text(file.fileName);
+                $('#loadingInfo').show();
+            });
+
+            r.on('complete', function () {
+                $('#loadingInfo').hide();
+                $('#redrawImage').click();
+            });
+
+        });
+    </script>
+{/block}

@@ -1,0 +1,48 @@
+{layout '../@layout.latte'}
+{block #content}
+
+<h2>{_mail.order}</h2>
+
+{foreach $order->reservations as $reservation}
+    {var $place => $reservation->place}
+    <h3>{_mail.reservation, [id => $reservation->id]}</h3>
+    <table class="table table-striped">
+        <tr>
+            <th>{_mail.street}:</th>
+            <td>(#{$place->identifier}) {$place->description}</td>
+        </tr>
+        <tr>
+            <th>{_mail.city}:</th>
+            <td>{$place->organization->name}</td>
+        </tr>
+        <tr>
+            <th>{_mail.from}:</th>
+            <td>{$reservation->from|date:'d.m.Y H:i'}</td>
+        </tr>
+        <tr>
+            <th>{_mail.to}:</th>
+            <td>{$reservation->to|date:'d.m.Y H:i'}</td>
+        </tr>
+        <tr>
+            <th>{_mail.interval}:</th>
+            <td>{$reservation->from|duration:$reservation->to}</td>
+        </tr>
+        <tr>
+            <th>{_mail.rz}:</th>
+            <td>{$reservation->rz}</td>
+        </tr>
+        {*
+        <tr>
+            <th>{_mail.action}:</th>
+            <td>
+                <ul>
+                    <li><a href="{link Driver:Place:google, organization => $place->organization, id => $place->id}">{_mail.showOnMap}</a></li>
+                    <li><a href="{link Driver:Reservation:place, organization => $place->organization, pid => $reservation->place->id, time => $reservation->to->format('U')}">{_mail.extendReservation}</li>
+                    <li n:if="$reservation->releaseToken"><a href="{link Driver:ReleaseReservation:release, $reservation->releaseToken->token}">{_mail.freeReservation}</a></li>
+                    <li n:if="$reservation->extendToken"><a href="{link Driver:ExtendReservation:extend, $reservation->extendToken->token}">{_mail.emergencyReservation}</a></li>
+                </ul>
+            </td>
+        </tr>
+        *}
+    </table>
+{/foreach}

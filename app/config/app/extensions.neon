@@ -1,0 +1,38 @@
+extensions:
+    console: Kdyby\Console\DI\ConsoleExtension
+    migrations: Nextras\Migrations\Bridges\NetteDI\MigrationsExtension
+    dbal: Nextras\Dbal\Bridges\NetteDI\DbalExtension
+    orm: Nextras\Orm\Bridges\NetteDI\OrmExtension
+    #clihttp: Minetro\Bridges\CliHttpExtension('http://www.zaparkujto.cz')
+    translation: Kdyby\Translation\DI\TranslationExtension
+    zaparkujto: App\Core\Extensions\ZaparkujtoExtension
+    thepay: Trejjam\ThePay\DI\ThePayExtension
+
+migrations:
+    dir: %appDir%/../migrations # migrations base directory
+    driver: mysql               # pgsql or mysql
+    dbal: nextras               # nextras, nette, doctrine or dibi
+
+dbal:
+    driver: %database.driver%
+    host: %database.host%
+    database: %database.dbname%
+    username: %database.user%
+    password: %database.password%
+    connectionTz: '+1:00'
+    simpleStorageTz: '+1:00'
+
+orm:
+    model: App\Model\Orm\Model
+
+decorator:
+    App\Model\Orm\AbstractApplicationRepository:
+        inject: yes
+
+translation:
+    resolvers:
+        header: off
+    default: %translation.default%
+    whitelist: %translation.whitelist%
+    dirs:
+        - %appDir%/translation

@@ -1,0 +1,3 @@
+{foreach $form->controls as $control}
+	<input type="hidden" n:if="$control instanceof Nette\Forms\Controls\Hidden" n:name="$control">	
+{/foreach}

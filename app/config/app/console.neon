@@ -1,0 +1,20 @@
+services:
+
+	- App\Model\Cron\HttpConsoleFactory
+
+	- {
+		class: App\Console\Email\NotificationCommand
+		tags: [kdyby.console.command]
+	}
+	- {
+		class: App\Console\Reservation\CancelReservedCommand
+		tags: [kdyby.console.command]
+	}
+	- {
+		class: App\Console\Order\CheckCommand
+		tags: [kdyby.console.command]
+	}
+	- {
+		class: App\Console\Order\CancelUnpaidOrdersCommand
+		tags: [kdyby.console.command]
+	}

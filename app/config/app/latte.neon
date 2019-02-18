@@ -1,0 +1,10 @@
+services:
+    nette.latteFactory:
+        setup:
+            - addFilter('wrapper', [App\Core\Latte\Filters, 'wrapper'])
+            - addFilter('distance', [App\Core\Latte\Filters, 'distance'])
+            - addFilter('time', [App\Core\Latte\Filters, 'time'])
+            - addFilter('minutes', [App\Core\Latte\Filters, 'minutes'])
+            - addFilter('hours', [App\Core\Latte\Filters, 'hours'])
+            - addFilter('duration', [App\Core\Latte\Filters, 'duration'])
+            - addFilter('json', [App\Core\Latte\Filters, 'json'])

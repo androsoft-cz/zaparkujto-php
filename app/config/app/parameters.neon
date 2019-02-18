@@ -1,0 +1,23 @@
+parameters:
+    portal:
+        email: error@zaparkujto.cz
+        mail:
+            from: no-reply@zaparkujto.cz
+            fromName: ZaparkujTo.cz
+
+    urls:
+        imagesPlaces: images/places
+        placeTypeIcons: images/place-type-icons
+
+    dirs:
+        imagesPlaces: %wwwDir%/images/places
+        resumableJsTemp: %tempDir%/resumable_js
+        pdfTemp: %tempDir%/pdf
+
+    translation:
+        whitelist:
+            - cs
+            - sk
+            - en
+
+        default: cs

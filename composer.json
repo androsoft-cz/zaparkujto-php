@@ -1,0 +1,63 @@
+{
+  "authors": [
+    {
+      "name": "Martin Matoušek",
+      "email": "martin.matousek@gmail.com"
+    },
+    {
+      "name": "Milan Felix Šulc",
+      "email": "sulcmil@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">= 7.1",
+    "nette/application": "^2.4.1",
+    "nette/bootstrap": "^2.4.1",
+    "nette/caching": "^2.5.2",
+    "nette/di": "^2.4.3",
+    "nette/finder": "^2.4.0",
+    "nette/forms": "^2.4.2",
+    "nette/http": "^2.4.2",
+    "nette/mail": "^2.4.1",
+    "nette/robot-loader": "^2.4.0",
+    "nette/safe-stream": "^2.3.2",
+    "nette/security": "^2.4.0",
+    "nette/utils": "^2.4.1",
+    "latte/latte": "^2.4.2",
+    "tracy/tracy": "^2.4.3",
+    "ezyang/htmlpurifier": "^4.8.0",
+    "nella/forms-datetime": "^2.4.3",
+    "kdyby/console": "^2.6.1",
+    "nextras/migrations": "^3.0.4",
+    "nextras/orm": "^2.2.0",
+    "nextras/dbal": "^2.1.0-rc1",
+    "nextras/static-router": "^1.1.0",
+    "nicmart/string-template": "dev-master#c92109e107df14c55e98e18465097887d25d19e9",
+    "markette/gopay-inline": "^1.1.1",
+    "adamstipak/nette-rest-route": "^2.6.1",
+    "phpoffice/phpexcel": "^1.8.0",
+    "joseki/pdf-response": "^3.0.0",
+    "o5/grido": "dev-master#611ae6bcf694cab96c1b2faba1748f18b529371e",
+    "kdyby/translation": "^2.4",
+    "trejjam/thepay-lib": "dev-namespaces#8be76d6",
+    "trejjam/thepay": "^3.1",
+    "nextras/link-factory": "^1.1",
+    "ondrakoupil/csob-eapi-paygate": "^1.7"
+  },
+  "require-dev": {
+    "nette/tester": "^1.7.1",
+    "janmarek/mockista": "^1.1.0",
+    "squizlabs/php_codesniffer": "^2.7.0",
+    "jakub-onderka/php-parallel-lint": "~0.9.0"
+  },
+  "autoload": {
+    "files": [
+      "app/shortcuts.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\Enginge\\": "tests/engine"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+<fieldset>
+     <div class="row">
+         <div n:class="col-md-12">
+			{foreach $form->controls as $input}
+                {if $customInputsTemplatePath !== null && in_array($input->name, $customInputNames)}
+                    {include $customInputsTemplatePath input => $input, controlClass => $controlClass, form => $form}
+                {else}
+
+                    <div n:if="$input instanceof Nette\Forms\Controls\Checkbox" class="checkbox {$controlClass} {$input->required ? required}">
+                        <label n:if="$input->caption">
+                            <input type="checkbox" n:name="$input">
+                            {$input->caption|translate}
+                        </label>
+                        <p class="help-block small" n:if="$input->getOption('description')">{_$input->getOption('description')}</p>
+                        <span class=error n:ifcontent>{$input->error}</span>
+                    </div>
+
+                    <div n:if="$input instanceof Nette\Forms\Controls\TextInput" class="form-group {$controlClass} {$input->required ? required}">
+                        <label n:if="$input->label" n:name="$input" class="control-label">{$input->caption|translate}</label>
+                        <input n:if="$input instanceof Nette\Forms\Controls\TextInput" n:name="$input" class="form-control">
+                        <p class="help-block small" n:if="$input->getOption('description')">{_$input->getOption('description')}</p>
+                        <span class=error n:ifcontent>{$input->error}</span>
+                    </div>
+
+                    <div n:if="$input instanceof Nette\Forms\Controls\TextArea" class="form-group {$controlClass} {$input->required ? required}">
+                        <label n:if="$input->label" n:name="$input" class="control-label">{$input->caption|translate}</label>
+                        <textarea n:if="$input instanceof Nette\Forms\Controls\TextArea" n:name="$input" class="form-control" rows="6"></textarea>
+                        <p class="help-block small" n:if="$input->getOption('description')">{_$input->getOption('description')}</p>
+                        <span class=error n:ifcontent>{$input->error}</span>
+                    </div>
+
+                    <div n:if="$input instanceof Nella\Forms\DateTime\DateInput" class="form-group {$controlClass} {$input->required ? required}">
+                        <label n:if="$input->label" n:name="$input" class="control-label">{$input->caption|translate}</label>
+                        <input n:if="$input instanceof Nella\Forms\DateTime\DateInput" n:name="$input" class="form-control">
+                        <p class="help-block small" n:if="$input->getOption('description')">{_$input->getOption('description')}</p>
+                        <span class=error n:ifcontent>{$input->error}</span>
+                    </div>
+
+                    <div n:if="$input instanceof Nella\Forms\DateTime\DateTimeInput" class="form-group {$controlClass} {$input->required ? required}">
+                        <label n:if="$input->label" n:name="$input" class="control-label">{$input->caption|translate}</label>
+                        <input n:if="$input instanceof Nella\Forms\DateTime\DateTimeInput" n:name="$input" class="form-control">
+                        <p class="help-block small" n:if="$input->getOption('description')">{_$input->getOption('description')}</p>
+                        <span class=error n:ifcontent>{$input->error}</span>
+                    </div>
+
+                    <div n:if="$input instanceof Nette\Forms\Controls\SelectBox" class="form-group {$controlClass} {$input->required ? required}">
+                        <label n:if="$input->label" n:name="$input" class="control-label">{$input->caption|translate}</label>
+                        <select n:if="$input instanceof Nette\Forms\Controls\SelectBox" n:name="$input" class="form-control"></select>
+                        <p class="help-block small" n:if="$input->getOption('description')">{_$input->getOption('description')}</p>
+                        <span class=error n:ifcontent>{$input->error}</span>
+                    </div>
+
+                {/if}
+			{/foreach}
+		</div>
+	</div>
+</fieldset>
+

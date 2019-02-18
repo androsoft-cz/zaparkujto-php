@@ -1,0 +1,8 @@
+{layout '../@layout.latte'}
+{block #content}
+
+{capture $link}{link Driver:PasswordReset:reset, $token, locale => $locale}{/capture}
+
+<p>{_mail.resetPassword.youHaveSubmittedRequest, [], NULL, $locale}</p>
+<p>{_mail.resetPassword.clickForChange, ['link' => $link], NULL, $locale|noescape}</p>
+<p>{_mail.resetPassword.thanks, [], NULL, $locale}</p>

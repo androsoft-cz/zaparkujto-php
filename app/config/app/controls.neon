@@ -1,0 +1,4 @@
+services:
+    - App\Modules\Driver\Components\GoogleMap\IDetailControlFactory
+    - App\Modules\Driver\Components\Geocode\IAutoGeocodeControlFactory
+    - App\Modules\Driver\Components\Search\ISearchControlFactory

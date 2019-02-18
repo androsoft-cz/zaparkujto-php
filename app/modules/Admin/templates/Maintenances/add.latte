@@ -1,0 +1,17 @@
+{extends '../@layout.admin.latte'}
+
+{block content}
+
+<!-- Main content -->
+<section class="content">
+	<div class="row">
+		<div class="col-md-6">
+			{include '../../../Base/components/BSFormLTE.latte', form => form, formName => 'presenter.maintenances.add', controlClass => 'col-md-12'}
+		</div>
+	</div>
+</section>
+<script>
+	$(function () {
+		$('#frm-form-maintenancedAt').datepicker();
+	});
+</script>

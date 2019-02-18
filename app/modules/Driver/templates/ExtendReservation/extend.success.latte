@@ -1,0 +1,54 @@
+{block #content}
+<section class="order-result">
+    <h1>Nouzové prodloužení proběhlo úspěšně</h1>
+
+    <div class="content">
+        <h2>Rekapitulace</h2>
+
+        <div class="row">
+            <div class="col-md-6">
+                {var $reservation => $order->reservations->get()->fetch()}
+                {var $place => $reservation->place}
+                <table class="table table-striped">
+                    <tr>
+                        <th>Ulice:</th>
+                        <td>(#{$place->identifier}) {$place->description}</td>
+                    </tr>
+                    <tr>
+                        <th>Město:</th>
+                        <td>{$place->organization->name}</td>
+                    </tr>
+                    <tr>
+                        <th>Od:</th>
+                        <td>{$reservation->from|date:'d.m.Y H:i'}</td>
+                    </tr>
+                    <tr>
+                        <th>Do:</th>
+                        <td>{$reservation->to|date:'d.m.Y H:i'}</td>
+                    </tr>
+                    <tr>
+                        <th>Interval:</th>
+                        <td>{$template->duration($reservation->from, $reservation->to)}</td>
+                    </tr>
+                    <tr>
+                        <th>RZ:</th>
+                        <td>{$reservation->rz}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-6">
+                <div class="text-center">
+                    <div class="btn-group btn-block" role="group">
+                        <a n:href=":Driver:Place:google, organization => $place->organization->id, id => $place->id" class="btn btn-success col-xs-6">Otevřít v samostatném okně</a>
+                        <a href="https://www.google.com/maps/dir/Current+Location/{$place->lat},{$place->lng}" class="btn btn-warning col-xs-6">Navigovat do cíle</a>
+                    </div>
+                </div>
+                {control googleMapDetail}
+            </div>
+        </div>
+    </div>
+</section>
+
+{block #scripts}
+    <script src="//maps.googleapis.com/maps/api/js?key={$googleKey}"></script>
+{/block}

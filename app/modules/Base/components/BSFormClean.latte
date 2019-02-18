@@ -1,0 +1,8 @@
+{default $formClass => NULL}
+<form n:name=$form class="form {$formClass}">
+
+{include 'BSPartialFormErrors.latte', form => $form, controlClass => $controlClass}
+{include 'BSPartialFormBody.latte', form => $form, controlClass => $controlClass}
+{include 'BSPartialFormButtons.latte', form => $form, controlClass => $controlClass}
+
+</form>

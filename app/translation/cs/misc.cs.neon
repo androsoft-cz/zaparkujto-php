@@ -1,0 +1,15 @@
+authenticator:
+	username: 'Špatné uživatelské jméno.'
+	password: 'Špatné heslo.'
+reserve:
+	badDate: 'Špatný datum'
+	range: 'Rezervaci je možné provest minimálně na %diff% minut.'
+	full: 'Místo je v tomto termínu obsazené.'
+	freeFrom: 'Místo je volné až od %from%.'
+	freeTo: 'Místo je volné jenom do %to%.'
+order:
+	place: 'Parkovací místo %name%'
+	placeDesc: 'Rezervace parkovacího místa'
+	shortDesc: 'Rezervace parkování'
+	extension: 'Nouzové prodloužení %name%'
+	extensionDesc: 'Nouzové prodloužení rezervace'

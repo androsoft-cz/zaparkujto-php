@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <style type="text/css">
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+        #content {
+            margin: 0 auto;
+            width: 960px;
+        }
+        .row {
+            float: left;
+        }
+        .column {
+            width: 300px;
+            float: left;
+            padding: 0 10px;
+        }
+        .cell {
+            padding: 0 0 20px 0;
+        }
+        .underline {
+            border-bottom: 2px dotted black;
+        }
+        .upperline {
+            border-top: 2px dotted black;
+        }
+        p {
+            margin: 16px 0 0 0;
+        }
+        p.first {
+            margin-top:40px;
+        }
+        .foot {
+            border-top: 2px dotted black;
+            border-bottom: 2px dotted black;
+            font-size: 34px;
+            color: #009bdc;
+            float: left;
+            width: 940px;
+            margin-left: 10px;
+            margin-top: 40px;
+        }
+        .foot-column {
+            padding: 35px 0 25px 0;
+        }
+        .foot-column-first {
+            width: 320px;
+            float: left;
+        }
+        .foot-column-second {
+            width: 600px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <div class="row">
+            <div class="column">
+                <div class="cell underline">
+                    <img src="{$basePath}/images/receipt/dots.png" width="40"><br>
+                    <strong>{_mail.simpleInvoice}</strong>
+                </div>
+            </div>
+            <div class="column">
+                <div class="cell underline">{_mail.invoiceNumber}:<br>
+                    <strong>{$vs}</strong></div>
+            </div>
+            <div class="column">
+                <div class="cell underline">{_mail.dateOfIssue}:<br>
+                    <strong>{$from|date:'j. n. Y'}</strong></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <div class="cell"></div>
+            </div>
+            <div class="column">
+                <div class="cell">
+                    <p class="first">{_mail.supplier}:</p>
+                    <p>
+                        {ifset $supplierName}<strong>{$supplierName}</strong><br n:if="$supplierStreet !== null || $supplierCity !== null">{/ifset}
+                        {ifset $supplierStreet}{$supplierStreet}<br n:ifset="$supplierCity">{/ifset}
+                        {ifset $supplierCity}{$supplierCity}{/ifset}
+                    </p>
+                    <p>
+                        {ifset $supplierIC}{_mail.cin|upper}: {$supplierIC}<br n:ifset="$supplierDIC">{/ifset}
+                        {ifset $supplierDIC}{_mail.tin|upper}: {$supplierDIC}{/ifset}
+                    </p>
+                    <p>
+                        {ifset $supplierPhone}{$supplierPhone}<br n:ifset="$supplierEmail">{/ifset}
+                        {ifset $supplierEmail}{$supplierEmail}{/ifset}
+                    </p>
+                </div>
+            </div>
+            <div class="column">
+                <div class="cell">
+                    {if $hasUser}
+                        <p class="first">{_mail.subscriber}:</p>
+                        <p>
+                            {ifset $userName}<strong>{$userName}</strong><br n:if="$userStreet !== null || $userCity !== null">{/ifset}
+                            {ifset $userStreet}{$userStreet}<br n:ifset="$userCity">{/ifset}
+                            {ifset $userCity}{$userCity}{/ifset}
+                        </p>
+                        <p>
+                            {ifset $userIC}{_mail.cin|upper}: {$userIC}<br n:ifset="$userDIC">{/ifset}
+                            {ifset $userDIC}{_mail.tin|upper}: {$userDIC}{/ifset}
+                        </p>
+                    {/if}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <div class="cell"></div>
+            </div>
+            <div class="column">
+                <div class="cell upperline">
+                    <p class="first">
+                        <strong>{_mail.parkingBill}</strong>
+                    </p>
+                    <p>
+                        {_mail.city}: {$city}<br>
+                        {_mail.parking}: {$street}<br>
+                        {_mail.timeIncome}: {$from|date:'G:i'}<br>
+                        {_mail.duration}: {$duration|date:'G:i'}h<br>
+                        {_mail.dateOfIssue}: {$from|date:'j. n. Y'}
+                    </p>
+                </div>
+            </div>
+            <div class="column">
+                <div class="cell upperline">
+                    <p class="first">
+                        {_mail.bank}: 7701250004/5500<br>
+                        {_mail.vs}: {$vs}<br>
+                        {_mail.ks}: 0308
+                    </p>
+                    <p>
+                        {_mail.priceWithoutVat} {$vatPercentage}%: {$untaxedPrice|number:2:',':' '} {_mail.currency}<br>
+                        {_mail.vat} {$vatPercentage}%: {$vat|number:2:',':' '} {_mail.currency}<br>
+                        {_mail.toPay}: {$taxedPrice} {_mail.currency}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="foot">
+            <div class="foot-column foot-column-first">
+                <img src="{$basePath}/images/receipt/logo.png" width="140" alt="">
+            </div>
+            <div class="foot-column foot-column-second">
+                {_mail.thxMessage}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

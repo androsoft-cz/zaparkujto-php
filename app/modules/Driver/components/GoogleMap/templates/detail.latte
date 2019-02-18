@@ -1,0 +1,5 @@
+{block}
+{var $markers => [
+['lat' => $place->lat, 'lng' => $place->lng, 'title' => '#' . $place->identifier . ' ' . $place->description]
+]}
+<div class="google-map-detail" data-lng="{$place->lng}" data-markers="{$markers|json}" data-lat="{$place->lat}"></div>

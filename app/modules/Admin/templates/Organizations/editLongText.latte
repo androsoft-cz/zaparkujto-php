@@ -1,0 +1,31 @@
+{extends '../@layout.admin.latte'}
+
+{block content}
+
+<!-- Main content -->
+<section class="content">
+
+<form n:name=longTextForm class=form>
+	<div class="row">
+		<div class="col-md-8">
+			<h3 class="pull-left">{$longTextCaption}</h3>
+		</div>
+		<div class="col-md-4">
+			<h3>
+			<input n:name=submit class="btn btn-success pull-right">
+			</h3>
+		</div>
+	</div>
+	<textarea n:name="{$longTextField}" class="btn btn-default" rows="50"></textarea>
+</form>
+
+</section>
+
+<script type="text/javascript">
+	window.onload = function()
+	{
+		var editor = CKEDITOR.replace( {$longTextField}, {
+			height: 600
+		});
+	}
+</script>

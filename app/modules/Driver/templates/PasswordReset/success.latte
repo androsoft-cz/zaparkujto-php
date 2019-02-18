@@ -1,0 +1,8 @@
+{extends '../Sign/@layout.latte'}
+{block #content}
+
+{capture $link}{link :Driver:Sign:in}{/capture}
+
+<p class="text-center">
+    {_driver.passwordChangeSuccess, ['link' => $link]|noescape}
+</p>

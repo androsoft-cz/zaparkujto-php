@@ -1,0 +1,3 @@
+services:
+    # Admin
+    - App\Modules\Admin\Components\HomepageStats\IHomepageStatsControlFactory

@@ -1,0 +1,13 @@
+{extends '../@layout.admin.latte'}
+
+{block content}
+
+{var customInputsTemplatePath => '../../Admin/templates/Cards/partial/customFormInputs.latte'} {* !!! path relative to 'Base/components' dir *}
+{var customInputNames => ['place']}
+
+<!-- Main content -->
+<section class="content">
+	<div class="row">
+        {include '../../../Base/components/BSFormLTEGroups.latte', form => form, formName => 'presenters.cards.addCard', controlClass => 'col-md-12', customInputsTemplatePath => $customInputsTemplatePath, customInputNames => $customInputNames}
+	</div>
+</section>

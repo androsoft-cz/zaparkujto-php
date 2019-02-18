@@ -1,0 +1,52 @@
+{layout '../@layout.latte'}
+{block #content}
+
+<h2>{_mail.cancelReservation}</h2>
+
+<p>{_mail.cancelReservationDesc}</p>
+
+{var $place1 => $reservation1->place}
+<table class="table table-striped">
+    <tr>
+        <th>{_mail.street}:</th>
+        <td>(#{$place1->identifier}) {$place1->description}</td>
+    </tr>
+    <tr>
+        <th>{_mail.city}:</th>
+        <td>{$place1->organization->name}</td>
+    </tr>
+    <tr>
+        <th>{_mail.from}:</th>
+        <td>{$reservation1->from|date:'d.m.Y H:i'}</td>
+    </tr>
+    <tr>
+        <th>{_mail.to}:</th>
+        <td>{$reservation1->to|date:'d.m.Y H:i'}</td>
+    </tr>
+</table>
+
+<p>
+    {_mail.selectSparePlace}
+    <a href="{link Driver:ExtendReservation:spare, $reservation2->extendSpareToken->token}">{_mail.acceptSparePlaceLink}</a>
+    {_mail.moneyReturn}
+</p>
+
+{var $place2 => $reservation2->place}
+<table class="table table-striped">
+    <tr>
+        <th>{_mail.street}:</th>
+        <td>(#{$place2->identifier}) {$place2->description}</td>
+    </tr>
+    <tr>
+        <th>{_mail.city}:</th>
+        <td>{$place2->organization->name}</td>
+    </tr>
+    <tr>
+        <th>{_mail.from}:</th>
+        <td>{$reservation2->from|date:'d.m.Y H:i'}</td>
+    </tr>
+    <tr>
+        <th>{_mail.to}:</th>
+        <td>{$reservation2->to|date:'d.m.Y H:i'}</td>
+    </tr>
+</table>

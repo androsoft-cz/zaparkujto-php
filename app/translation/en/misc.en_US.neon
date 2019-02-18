@@ -1,0 +1,15 @@
+authenticator:
+	username: 'Wrong username.'
+	password: 'Wrong password.'
+reserve:
+	badDate: 'Wrong date'
+	range: 'Reservation time can be minimum for %diff% minutes.'
+	full: 'Place is full.'
+	freeFrom: 'Place is free from %from%.'
+	freeTo: 'Places is free only to %to%.'
+order:
+	place: 'Parking place %name%'
+	placeDesc: 'Parking place reservation'
+	shortDesc: 'Parking reservation'
+	extension: 'Emergency prolongation %name%'
+	extensionDesc: 'Emergency reservation prolongation'

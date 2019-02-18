@@ -1,0 +1,8 @@
+minReservationTime: 'Rezervaci je možné provest minimálně na %minutes% minut.'
+placeFull: 'Místo je v tomto termínu obsazené.'
+placeFreeFrom: 'Místo je volné až od %from%.'
+placeFreeTo: 'Místo je volné jenom do %to%.'
+placeOnlyForHandicapped: 'Místo je pouze pro invalidy.'
+placeClosed: 'Místo je uzavřené.'
+orderProcessingError: 'Vyskytl se problém při zpracování objednávky. Prosím opakujte akci znovu.'
+unknownError: 'Nastala neznáma chyba.'

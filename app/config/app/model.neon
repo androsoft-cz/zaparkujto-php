@@ -1,0 +1,99 @@
+services:
+    # Security
+    - App\Model\Security\Authenticator
+    - App\Model\Security\Authorizator
+
+    # Routing
+    - App\Model\Routing\OrganizationRouteFactory
+    - App\Model\Routing\LanguageRouteFactory(%translation.default%, %translation.whitelist%)
+    - App\Model\Routing\RouterFactory
+
+    router: @App\Model\Routing\RouterFactory::create
+
+    # Time config
+    time.config:
+        class: App\Core\Config\Config
+        factory: App\Core\Config\Config::factory([
+            diff: %time.diff%
+            logic: %time.logic%
+            reservation: %time.reservation%
+        ])
+
+    # Payment
+    - { class: App\Model\Payment\PaymentService, inject: on}
+
+    # Search
+    - App\Model\Search\SearchSessionService
+    - App\Model\Search\SearchService
+    - App\Model\Search\PlaceFinder
+    - App\Model\Search\FreeCapacityCounter
+    - App\Model\Search\UseofPlaceSelector
+    - App\Model\Search\SearchArgs
+
+    # Google
+    - App\Model\WebServices\Google\Geocoding\GeocodingClient(%google.key%)
+    - App\Model\WebServices\Google\Place\AutocompleteClient(%google.key%)
+
+    # ResumableJs
+    - App\Model\WebServices\ResumableJs\UploadHandler
+    - App\Model\WebServices\ResumableJs\FileMerger
+
+    resumableJs.fileLocator:
+        class: App\Model\WebServices\ResumableJs\ChunkFileLocator
+        arguments: [%dirs.resumableJsTemp%]
+
+    # Facades
+    - App\Model\Facade\OrderFacade
+    - App\Model\Facade\ReserveFacade(@time.config)
+    - App\Model\Facade\PlaceFacade
+    - App\Model\Facade\OrganizationFacade
+    - App\Model\Facade\ExtendReservationFacade(@time.config)
+    - App\Model\Facade\ReleaseReservationFacade(@time.config)
+    - App\Model\Facade\NotificationFacade(@time.config)
+    - App\Model\Facade\ReservationFacade(@time.config)
+    - App\Model\Facade\CreditFacade(@time.config)
+    - App\Model\Facade\VatFacade
+    - App\Model\Facade\CardFacade
+    - App\Model\Facade\PaymentCardFacade
+
+    # Other
+    - App\Model\OrganizationRequest
+    - App\Model\Orm\Orders\VsProvider
+    - App\Model\Orm\UsersRz\UserRzHelper
+    - Nextras\Application\LinkFactory
+
+    locator.placeImageLocator:
+        class: App\Model\WebServices\Locator\PlaceImageLocator
+        arguments: [%urls.imagesPlaces%, %dirs.imagesPlaces%]
+
+    - App\Model\WebServices\Locator\PlaceTypeIconLocator(%urls.placeTypeIcons%)
+
+    - App\Model\Reservations\PlaceReservator
+    - App\Model\Reservations\SmsReservator
+    - App\Model\Reservations\ReservationValidator
+
+    # Cron
+    - App\Core\Cron\Http\TokenValidator(..., %cron.http.token%)
+
+    # Mailing
+    - App\Model\Mailing\MailFactory(App\Core\Mail\Config([
+        dir: %appDir%/model/Mailing/templates
+        from: %portal.mail.from%
+        fromName: %portal.mail.fromName%
+    ]))
+    - App\Model\Mailing\MailService
+    - App\Model\Mailing\ReceiptTemplateFactory
+    pdf.pdfFactory:
+        class: App\Model\Pdf\PdfFactory
+        arguments: [%dirs.pdfTemp%]
+
+    # Template
+    nette.templateFactory: App\Core\Template\TemplateFactory
+
+    # Time logic
+    timelogic.factory:
+        implement: App\Model\TimeLogic\ITimeAnalyzatorFactory
+        class: App\Model\TimeLogic\TimeAnalyzator(@time.config)
+
+    # Util
+    - App\Core\Utils\WeekdayTranslator

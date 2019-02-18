@@ -1,0 +1,19 @@
+{if $input->name == 'place'}
+    <div n:if="$form->placeInputVisible()" class="form-group col-md-12 {$input->required ? required}">
+        <label n:name="$input" class="control-label">{$input->caption|translate}</label>
+
+        <div>
+            <div class="col-sm-10" style="padding: 0">
+                <input id="fakePlaceInput" class="form-control" value="{$form->getPlaceName()}" readonly />
+            </div>
+
+            <div class="col-sm-2" style="padding: 0">
+                <span onclick="$('#{$input->control->id|noescape}').val(''); $('#fakePlaceInput').val('');" class="btn btn-danger btn-flat"><i class="fa fa-times-circle"></i></span>
+            </div>
+        </div>
+
+        <span class=error n:ifcontent>{$input->error}</span>
+    </div>
+
+    <input n:name="$input" style="display: none;"/>
+{/if}

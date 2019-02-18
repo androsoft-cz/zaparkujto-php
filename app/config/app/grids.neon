@@ -1,0 +1,16 @@
+services:
+    # Admin
+    - App\Modules\Admin\Grids\Places\IPlacesGridFactory
+    - App\Modules\Admin\Grids\UseofPlaces\IUseofPlacesGridFactory
+    - App\Modules\Admin\Grids\Organizations\IOrganizationsGridFactory
+    - App\Modules\Admin\Grids\Organizations\IOrganizationSelectGridFactory
+    - App\Modules\Admin\Grids\Users\IUsersGridFactory
+    - App\Modules\Admin\Grids\Cards\ICardsGridFactory
+    - App\Modules\Admin\Grids\PlaceCards\IPlaceCardsGridFactory
+    - App\Modules\Admin\Grids\Credits\ICreditsGridFactory
+    - App\Modules\Admin\Grids\Maintenances\IMaintenancesGridFactory
+    - App\Modules\Admin\Grids\Inspections\IInspectionsGridFactory
+    - App\Modules\Admin\Grids\Orders\IOrdersGridFactory
+    - App\Modules\Admin\Grids\TimeWindows\ITimeWindowsGridFactory
+    - App\Modules\Admin\Grids\SenzorHistory\ISenzorHistoryGridFactory
+    - App\Modules\Admin\Grids\Position\IPositionGridFactory

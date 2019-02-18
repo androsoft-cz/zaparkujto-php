@@ -1,0 +1,16 @@
+{extends '../@layout.admin.latte'}
+
+{block content}
+
+<!-- Main content -->
+<section class="content">
+	<div class="row">
+        <div class="col-md-6">
+            {var customInputsTemplatePath => '../../Admin/templates/Places/partial/customFormInputs.latte'} {* !!! path relative to 'Base/components' dir *}
+            {var customInputNames => ['_validDaysPlaceHolder']}
+
+            {include '../../../Base/components/BSFormLTE.latte', form => form, formName => 'admin.addUseOfPlace', controlClass => 'col-md-12',
+                customInputsTemplatePath => $customInputsTemplatePath, customInputNames => $customInputNames}
+        </div>
+	</div>
+</section>

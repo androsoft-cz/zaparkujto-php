@@ -1,0 +1,30 @@
+{layout '../@layout.latte'}
+{block #content}
+
+<h2>{_mail.reservationSoonExpire}</h2>
+
+{var $place => $reservation->place}
+{if $canExtend}
+    <p>{_mail.extendYourReservation, [link => $this->link('Driver:Reservation:place', ['organization' => $place->organization->id, 'pid' => $place->id, 'time' => $reservation->to->format('U'))]|noescape}</p>
+{else}
+    <p>{_mail.goAway}</p>
+{/if}
+
+<table class="table table-striped">
+    <tr>
+        <th>{_mail.street}:</th>
+        <td>(#{$place->identifier}) {$place->description}</td>
+    </tr>
+    <tr>
+        <th>{_mail.city}:</th>
+        <td>{$place->organization->name}</td>
+    </tr>
+    <tr>
+        <th>{_mail.from}:</th>
+        <td>{$reservation->from|date:'d.m.Y H:i'}</td>
+    </tr>
+    <tr>
+        <th>{_mail.to}:</th>
+        <td>{$reservation->to|date:'d.m.Y H:i'}</td>
+    </tr>
+</table>

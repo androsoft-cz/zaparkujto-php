@@ -1,0 +1,6 @@
+recordSaved: 'Záznam byl uložen'
+logout: 'Právě jste se odhlásil.'
+refundSuccess: 'Objednávka úspěšně refundována'
+refundFaild: 'Nepodařilo se refundovat objednávku uživateli'
+addressNotFound: 'Nepovedlo se vyhledat danou adresu. Zkuste to prosím znovu.'
+noOrganizationAssigned: 'Nemáte přidělenu organizaci, kontaktujte dodavatele systému.'

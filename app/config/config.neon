@@ -1,0 +1,49 @@
+#
+# WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+# http://nette.org/security-warning
+#
+php:
+	date.timezone: Europe/Prague
+
+includes:
+	- app/console.neon
+	- app/controls.neon
+	- app/extensions.neon
+	- app/forms.neon
+	- app/components.neon
+	- app/grids.neon
+	- app/latte.neon
+	- app/model.neon
+	- app/parameters.neon
+
+application:
+	catchExceptions: %productionMode%
+	errorPresenter: Driver:Error
+
+	mapping:
+		Admin: App\Modules\Admin\*\*Presenter
+		Api: App\Modules\Api\*\*Presenter
+		Rpmapi: App\Modules\Rpmapi\*\*Presenter
+		Driver: App\Modules\Driver\*\*Presenter
+		Cron: App\Modules\Cron\*\*Presenter
+latte:
+	xhtml: no
+
+session:
+	expiration: 14 days
+	debugger: yes
+
+di:
+	debugger: yes
+
+tracy:
+	email: 
+	strictMode: yes
+
+mail:
+	smtp: on
+	host: %smtp.host%
+	username: %smtp.username%
+	password: %smtp.password%
+	port: %smtp.port%
+	secure: %smtp.secure%

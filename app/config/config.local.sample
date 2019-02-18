@@ -1,0 +1,81 @@
+parameters:
+    gopay:
+        id:
+        secret:
+        test: true
+
+    database:
+        driver: mysqli
+        host: localhost
+        dbname: rpm
+        user: root
+        password:
+
+    google:
+        key: 
+
+    time:
+        diff:
+            # Na kolik minuj je nejmene mozne udelat rezervaci
+            minimal: 15 # minutes
+
+            # Kolik minut pred koncem rezervace se posila notifikace
+            notification: 10 # minutes
+
+        logic:
+            # Show rules =========================
+            # Misto se nezobrazuje, pokud dalsi rezervace zacina za mene nez X
+            show_min_reservation_start: 15 # minutes
+            # Misto se nezobrazuje, pokud aktualni rezervace konci za vic nez X
+            show_max_reservation_end: 60 # minutes
+
+            # Time rules =========================
+            # Parkujte vice jak X
+            time_park_long_time: 420 # minutes
+
+            # Common =============================
+            # Tolerance mezi rezervacemi
+            tolerance_time: 5 # minutes
+
+        reservation:
+            # Release rules ======================
+            release:
+                # Kolik minut predem vracime 100% castky za uvolneni
+                canceled_before: 300 # minutes
+                # Kolik procent vraci za uvolneni po presahnuti limitu
+                canceled_during: 50 # percentage
+
+            # Extend rules =======================
+            extend:
+                # Kolik minut dopredu je nutne provest rezervaci, aby sla prodlouzit
+                extend_min_before: 1440 # minutes
+                # Kolik minut se bude drzet nahradni misto pro poskozeneho
+                extend_blocking_time: 300 # minutes
+                # Kolik minut lze nejmene prodlouzit rezervaci
+                extend_min_time: 60 # minutes
+                # Kolik minut lze nejvice prodlouzit rezervaci
+                extend_max_time: 300 # minutes
+
+    connection:
+        secured: no
+
+    cron:
+        http:
+            # Token pro spousteni cronu pres HTTP rozhrani
+            # <url>?_token=<token>
+            token:
+
+    smtp:
+      host: FILL_ME
+      username: FILL_ME
+      password: FILL_ME
+      port: FILL_ME
+      secure: FILL_ME
+
+    migrations:
+        # Token pro spousteni migrací pres HTTP rozhrani
+        # <url>?_token=<token>
+        token:
+
+    temporary:
+        disable_driver_module: false

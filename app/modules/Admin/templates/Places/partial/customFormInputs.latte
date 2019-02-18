@@ -1,0 +1,19 @@
+{if $input->name == 'email'}
+    <div class="form-group {$controlClass} {$input->required ? required}">
+        <label n:if="$input->label" n:name="$input" class="control-label">{$input->caption|translate}</label>
+        <input n:name="$input" class="form-control" autocomplete="off">
+        <span class=error n:ifcontent>{$input->error}</span>
+    </div>
+
+    <script>
+        $(function() {
+            $( "#{$input->control->id|noescape}" ).autocomplete({
+                source: {link cardAutoComplete!}
+            });
+        });
+    </script>
+{elseif $input->name == '_validDaysPlaceHolder'}
+    <div class="form-group {$controlClass}" style="margin-bottom: 0;">
+        <h3 style="margin-bottom: 0;">{_admin.validDays}</h3>
+    </div>
+{/if}

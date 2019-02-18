@@ -1,0 +1,43 @@
+# Nette Application
+log/*
+temp/*
+vendor/*
+
+# Config
+app/config/config.local.neon
+app/config/config.test.neon
+app/config/config.hosting.neon
+
+# Git
+!.gitignore
+
+# IDE
+.idea/
+
+# Webserver
+!.htaccess
+.htaccess
+
+# Mac
+.DS_Store
+attachments/*
+
+# Deploy
+deployment.ini*
+
+# Frontend
+www/bower_components
+
+# Other
+dc.bat
+www/.htpasswd
+www/runmig_hosting.php
+www/.htaccess_hosting
+www/phpinfo.php
+www/.htaccess_*
+www/mailoutput/*
+www/cron.bat
+www/download/*
+www/images/places
+mailoutput/*
+www/migrations.php

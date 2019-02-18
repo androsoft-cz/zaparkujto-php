@@ -1,0 +1,12 @@
+{extends '../@layout.admin.latte'}
+
+{block content}
+
+<!-- Main content -->
+<section class="content">
+	<div class="row">
+	<div class="col-md-6">
+	{include '../../../Base/components/BSFormLTE.latte', form => form, formName => 'presenters.users.detail', controlClass => 'col-md-12'}
+	</div>
+	</div>
+</section>

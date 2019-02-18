@@ -1,0 +1,55 @@
+{extends '../@layout.driver.latte'}
+{block #content}
+
+<h1>
+    {_presenters.places.places}
+</h1>
+
+<section class="place-list">
+    <div class="search-form">
+        {control search}
+    </div>
+
+    <div n:snippet="placelist">
+        {include #placelist}
+    </div>
+</section>
+
+{/block}
+
+{define #placelist}
+<div class="row" n:inner-foreach="$placeItems as $place">
+    <div class="col-lg-6">
+        <a class="place-card" n:href=":Driver:Reservation:place, id => $place->id">
+            <div class="preview">
+                <img src="{$basePath}/{$place->typeIconUrl}" title="" alt="">
+            </div>
+            <div class="content">
+                <div class="left">
+                    <h2>{$place->identifier} <span class="label label-primary">{$place->free_capacity}</span></h2>
+                    <p class="note">
+                        <small> {_presenters.places.onStreet, ['street' => $place->streetName]} <b n:ifset="$place->distance">- {$place->distance} km</b></small>
+                        <br/>
+                    </p>
+                </div>
+                {*
+                <div class="right">
+                    <p class="free">
+                        <span class="desc">
+                            {$place->free_text}
+                        </span>
+                        <span class="bullet {if $place->free_now}ok{else}none{/if}"></span>
+                    </p>
+                    <p class="info">
+                        <span class="desc">{_presenters.places.park}</span>
+                        <span class="count">
+                            {$place->park_text}
+                        </span>
+                    </p>
+                </div>
+                *}
+            </div>
+        </a>
+    </div>
+</div>
+{/define}

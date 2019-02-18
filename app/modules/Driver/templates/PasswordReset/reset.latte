@@ -1,0 +1,11 @@
+{extends '../Sign/@layout.latte'}
+{block #content}
+
+<h1 class="text-center">
+    {_driver.enterNewPassword}
+</h1>
+<p class="text-center">
+    {$user->username}
+</p>
+
+{include '../../../Base/components/BSFormLTE.latte', form => form, formName => '', controlClass => 'col-md-12'}

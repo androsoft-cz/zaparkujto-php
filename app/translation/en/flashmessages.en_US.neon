@@ -1,0 +1,6 @@
+recordSaved: 'Record was saved.'
+logout: 'You was logged out.'
+refundSuccess: 'Order was succesfully refunded'
+refundFaild: 'Order refundation failed.'
+addressNotFound: 'Nepovedlo se vyhledat danou adresu. Zkuste to prosím znovu.'
+noOrganizationAssigned: 'You do not have an organization assigned, contact your system vendor.'

@@ -1,0 +1,14 @@
+{extends '../@layout.admin.latte'}
+{block content}
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+    <div class="col-md-12">
+        <h3>{$position->place->streetName} <i>{$position->place->identifier}</i> - {_presenters.places.positionId, ['id' => $position->id]}</h3>
+        <p><a n:href="detail, $position->place->id" class="btn btn-primary">{_presenters.places.backToPlaceDetail}</a></p>
+
+        {include '../../../Base/components/BSFormLTE.latte', form => positionForm, formName => 'presenters.places.position', controlClass => 'col-md-12'}
+    </div>
+    </div>
+</section>
